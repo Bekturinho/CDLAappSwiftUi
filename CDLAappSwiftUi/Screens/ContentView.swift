@@ -9,28 +9,33 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        
-        
-        VStack{
-            HStack{
-                GeneralKnowlegeButton()
+        NavigationView{
+            
+            VStack{
+                HStack{
+                    GeneralKnowlegeButton()
+                    Spacer()
+                    ConfigurationButton()
+                    
+                }
                 Spacer()
-                ConfigurationButton()
                 
+                ButtonsView()
+                
+                Spacer()
+                ResultView()
             }
-            Spacer()
+            .background{
+                Color.black
+                    .ignoresSafeArea()
+            }
+           
             
-            ButtonsView()
             
-            Spacer()
-            ResultView()
+            
         }
-        .background{
-            Color.black
-                .ignoresSafeArea()
-        }
+        
     }
-    
 }
 
 #Preview {
@@ -42,13 +47,12 @@ struct ContentView: View {
 
 struct ButtonsView: View {
     var body: some View {
-        //        ZStack{
-        //            Color(.black)
-        //                .frame(width: .infinity, height: 200)
+       
         VStack{
             PracticeModeButton()
                 .padding(50)
             ExamModeButton()
+            DebugModeButton()
         }
         
         
@@ -119,6 +123,8 @@ struct PracticeModeCorrectLabel: View {
 
 
 
+
+
 struct GeneralKnowlegeButton: View {
     var body: some View {
         Button{
@@ -146,9 +152,11 @@ struct ConfigurationButton: View {
 
 struct PracticeModeButton: View {
     var body: some View {
-        Button{
-            print("Work")
-        }label: {
+        NavigationLink{
+            PracticeStack(
+                viewModel: .init()
+            )
+        } label: {
             Text("Practice Mode")
             
         }
@@ -160,8 +168,8 @@ struct PracticeModeButton: View {
 
 struct ExamModeButton: View {
     var body: some View {
-        Button{
-            print("Work")
+        NavigationLink{
+         ExamView()
         }label: {
             Text("Exam Mode")
             
@@ -172,3 +180,20 @@ struct ExamModeButton: View {
         
     }
 }
+
+struct DebugModeButton: View {
+    var body: some View {
+        NavigationLink{
+         DebugView()
+        }label: {
+            Text("Debug Mode")
+            
+        }
+        .frame(width: 200, height: 40)
+        .border(.white, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+        .foregroundColor(.white)
+        
+    }
+}
+
+

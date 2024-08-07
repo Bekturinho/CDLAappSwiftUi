@@ -7,15 +7,12 @@
 
 import Foundation
 
-struct PracticeModel: Equatable {
-    let question: String
-    let answers: [String]
-    var selectedAnswer: String? = nil
-}
-
-struct PracticeTestModel: Equatable {
+struct PracticeModel: Equatable, Codable {
     let questionNumber: String
     let question: String
     var answers: [String]
     var selectedAnswer: String? = nil
+    let correctAnswer: String
 }
+
+
