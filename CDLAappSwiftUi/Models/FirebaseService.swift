@@ -17,16 +17,17 @@ class FirebaseService {
         self.db = Firestore.firestore()
     }
     
-    func addQuestion(model: PracticeModel) {
-        do {
-            try db.collection("questions").addDocument(from: model)
-        } catch {
-            print("Add Question ERROR")
-        }
+    func addQuestion(model: PracticeModel, language: String) {
+            do {
+                try db.collection(language).addDocument(from: model)
+            } catch {
+                print("Add Question ERROR")
+            }
+        
     }
 //    questions/languages/ru/вопросы
     func getQuestions(callback: @escaping ([PracticeModel]) -> Void) {
-        db.collection("questions").getDocuments { (querySnapshot, error) in
+        db.collection("questionsKG").getDocuments { (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
             }

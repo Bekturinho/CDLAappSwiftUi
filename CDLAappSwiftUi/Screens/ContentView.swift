@@ -21,15 +21,21 @@ struct ContentView: View {
                 Spacer()
                 
                 ButtonsView()
-                
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
                 Spacer()
                 ResultView()
+                
             }
+            
             .background{
                 Color.black
                     .ignoresSafeArea()
             }
-           
+            
             
             
             
@@ -47,7 +53,7 @@ struct ContentView: View {
 
 struct ButtonsView: View {
     var body: some View {
-       
+        
         VStack{
             PracticeModeButton()
                 .padding(50)
@@ -131,10 +137,11 @@ struct GeneralKnowlegeButton: View {
             print("Work")
         }label: {
             Text("General Knowlegde")
-            Image(systemName: "play")
+            Image(systemName: "chevron.down")
         }
         
         .foregroundColor(.white)
+        .padding()
     }
 }
 
@@ -143,9 +150,10 @@ struct ConfigurationButton: View {
         Button{
             print("Work")
         }label: {
-            Image(systemName: "camera")
+            Text("o o o")
         }
         .foregroundColor(.white)
+        .padding()
     }
     
 }
@@ -169,7 +177,7 @@ struct PracticeModeButton: View {
 struct ExamModeButton: View {
     var body: some View {
         NavigationLink{
-         ExamView()
+            ExamView()
         }label: {
             Text("Exam Mode")
             
@@ -184,7 +192,7 @@ struct ExamModeButton: View {
 struct DebugModeButton: View {
     var body: some View {
         NavigationLink{
-         DebugView()
+            DebugView()
         }label: {
             Text("Debug Mode")
             

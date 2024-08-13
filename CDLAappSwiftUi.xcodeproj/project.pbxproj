@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E03F581E2C63ED1B00252513 /* UserDefaultsFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03F581D2C63ED1B00252513 /* UserDefaultsFacade.swift */; };
 		E066825C2C1A197300FD6DD3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E066825B2C1A197300FD6DD3 /* FirebaseAnalytics */; };
 		E066825E2C1A197300FD6DD3 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E066825D2C1A197300FD6DD3 /* FirebaseAuth */; };
 		E06682602C1A197300FD6DD3 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = E066825F2C1A197300FD6DD3 /* FirebaseCrashlytics */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E03F581D2C63ED1B00252513 /* UserDefaultsFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsFacade.swift; sourceTree = "<group>"; };
 		E06682592C1A185A00FD6DD3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E06682A82C28A17600FD6DD3 /* PracticeStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeStack.swift; sourceTree = "<group>"; };
 		E06682AA2C28A36200FD6DD3 /* PracticeStackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeStackViewModel.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			children = (
 				E0D443062C102EDA007D6AAF /* PracticeModel.swift */,
 				E06682E82C36781400FD6DD3 /* FirebaseService.swift */,
+				E03F581D2C63ED1B00252513 /* UserDefaultsFacade.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				E06682A92C28A17600FD6DD3 /* PracticeStack.swift in Sources */,
 				E06682AB2C28A36200FD6DD3 /* PracticeStackViewModel.swift in Sources */,
 				E0D443042C102E80007D6AAF /* PracticeView.swift in Sources */,
+				E03F581E2C63ED1B00252513 /* UserDefaultsFacade.swift in Sources */,
 				E06682E72C309A3F00FD6DD3 /* DebugView.swift in Sources */,
 				E0D443072C102EDA007D6AAF /* PracticeModel.swift in Sources */,
 				E06682E92C36781400FD6DD3 /* FirebaseService.swift in Sources */,
