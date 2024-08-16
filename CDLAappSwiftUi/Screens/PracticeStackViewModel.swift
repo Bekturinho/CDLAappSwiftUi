@@ -49,7 +49,9 @@ final class PracticeStackViewModel: ObservableObject {
         firebaseService.getQuestions { model in
             self.questions = model.sorted(by: { Int($0.questionNumber) ?? 0 < Int($1.questionNumber) ?? 0 })
             self.currentQuestion = self.questions[0]
+            
         }
+   
     }
     
     func loadDataForSheet() {

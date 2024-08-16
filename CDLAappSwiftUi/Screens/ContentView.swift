@@ -21,10 +21,8 @@ struct ContentView: View {
                 Spacer()
                 
                 ButtonsView()
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
+                
+             
                 Spacer()
                 Spacer()
                 ResultView()
@@ -146,11 +144,26 @@ struct GeneralKnowlegeButton: View {
 }
 
 struct ConfigurationButton: View {
+    @State private var showActionSheet = false
+    @State var fireBaseService = FirebaseService()
     var body: some View {
-        Button{
-            print("Work")
-        }label: {
-            Text("o o o")
+        VStack {
+            Button("o o o"){
+                showActionSheet = true
+                
+            }
+            
+            .actionSheet(isPresented: $showActionSheet) {
+                ActionSheet(
+                    title: Text("Действия"),
+                    message: Text("Выберите действие"),
+                    buttons: [
+                        .default(Text("Choose Language")) {},
+                        .default(Text("Go to Debug")) {},
+                        .cancel()
+                    ]
+                )
+            }
         }
         .foregroundColor(.white)
         .padding()

@@ -28,6 +28,7 @@ struct PracticeView: View {
         self.goToCallback = goToCallback
     }
     
+    @available(iOS 16.4, *)
     var body: some View {
         VStack(alignment: .leading) {
          
@@ -78,27 +79,28 @@ struct PracticeView: View {
                 .ignoresSafeArea()
         }
         .sheet(isPresented: $goToSheetIsPresented) {
-            VStack {
-                Text("Go To Question")
-                .foregroundStyle(.white)
-                .padding()
-                
-                TextField("Question number", text: $sheetQuestionsNumber)
-                    .textFieldStyle(.roundedBorder)
-                    .padding(.horizontal)
-                    .foregroundStyle(Color(uiColor: .darkGray))
-                    .keyboardType(.asciiCapableNumberPad)
-                
-                Button {
-                    goToCallback(sheetQuestionsNumber)
-                
-                } label: {
-                    Text("OK")
+                VStack {
+                    Text("Go To Question")
+                        .foregroundStyle(.white)
+                        .padding()
+                    
+                    TextField("Question number", text: $sheetQuestionsNumber)
+                        .textFieldStyle(.roundedBorder)
+                        .padding(.horizontal)
+                        .foregroundStyle(Color(uiColor: .darkGray))
+                        .keyboardType(.asciiCapableNumberPad)
+                    
+                    Button {
+                        goToCallback(sheetQuestionsNumber)
+                        
+                    } label: {
+                        Text("OK")
+                    }
+                    Spacer()
                 }
-                Spacer()
-            }
-            .presentationDetents([.height(170)])
-            .presentationBackground(Color(uiColor: .darkGray))
+                .presentationDetents([.height(170)])
+                .presentationBackground(Color(uiColor: .darkGray))
+          
         }
     }
 }

@@ -10,7 +10,7 @@ import FirebaseCore
 import FirebaseFirestore
 
 class FirebaseService {
-    
+  
     let db: Firestore
     
     init() {
@@ -25,6 +25,8 @@ class FirebaseService {
             }
         
     }
+    
+    
 //    questions/languages/ru/вопросы
     func getQuestions(callback: @escaping ([PracticeModel]) -> Void) {
         db.collection("questionsKG").getDocuments { (querySnapshot, error) in
