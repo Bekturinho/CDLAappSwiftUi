@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     var body: some View {
-        NavigationView{
-            
             VStack{
                 HStack{
                     GeneralKnowlegeButton()
@@ -33,12 +32,6 @@ struct ContentView: View {
                 Color.black
                     .ignoresSafeArea()
             }
-            
-            
-            
-            
-        }
-        
     }
 }
 
@@ -54,9 +47,9 @@ struct ButtonsView: View {
         
         VStack{
             PracticeModeButton()
-                .padding(50)
+           
             ExamModeButton()
-            DebugModeButton()
+            .padding()
         }
         
         
@@ -145,38 +138,78 @@ struct GeneralKnowlegeButton: View {
 
 struct ConfigurationButton: View {
     @State private var showActionSheet = false
+    @State private var showLanguagePicker = false
     @State var fireBaseService = FirebaseService()
+    @EnvironmentObject var router: Router
+    @State private var selectedLanguage: LanguageManager.Language = .eng
+    @EnvironmentObject var languageManager: LanguageManager
+    
+    var languageButtons: [Alert.Button] {
+        LanguageManager.Language.allCases.map { lang in
+            .default(Text(lang.title)) {
+                languageManager.changeLanguage(lang: lang)
+            }
+        } + [.cancel()]
+    }
     var body: some View {
         VStack {
             Button("o o o"){
                 showActionSheet = true
                 
+                
             }
-            
             .actionSheet(isPresented: $showActionSheet) {
                 ActionSheet(
                     title: Text("Действия"),
                     message: Text("Выберите действие"),
                     buttons: [
-                        .default(Text("Choose Language")) {},
-                        .default(Text("Go to Debug")) {},
+                        
+                        .default(Text("Choose Language")) {
+                            showLanguagePicker = true
+                            
+                        },
+                        .default(Text("Go to Debug")) {router.navigate(to: .debug)},
+                        
                         .cancel()
                     ]
                 )
             }
-        }
+            
+            .sheet(isPresented: $showLanguagePicker) {
+                           VStack {
+                               Text("Выберите язык")
+                                   .font(.headline)
+                               Picker("Language", selection: $selectedLanguage) {
+                                   ForEach(LanguageManager.Language.allCases, id: \.self) { lang in
+                                       Text(lang.title).tag(lang)
+                                   }
+                               }
+                               .pickerStyle(WheelPickerStyle())
+                               
+                               Button("Save") {
+                                   languageManager.changeLanguage(lang: selectedLanguage)
+                                   
+                                   showLanguagePicker = false
+                               }
+                           }
+                           .foregroundColor(.black)
+                           .padding()
+                       }
+                   }
         .foregroundColor(.white)
         .padding()
+        }
+  
     }
     
-}
+
 
 struct PracticeModeButton: View {
+    @EnvironmentObject var router: Router
+    
     var body: some View {
-        NavigationLink{
-            PracticeStack(
-                viewModel: .init()
-            )
+        Button {
+            router.navigate(to: .practice)
         } label: {
             Text("Practice Mode")
             
@@ -188,9 +221,10 @@ struct PracticeModeButton: View {
 }
 
 struct ExamModeButton: View {
+    @EnvironmentObject var router: Router
     var body: some View {
-        NavigationLink{
-            ExamView()
+        Button{
+            router.navigate(to: .exam)
         }label: {
             Text("Exam Mode")
             
@@ -202,19 +236,6 @@ struct ExamModeButton: View {
     }
 }
 
-struct DebugModeButton: View {
-    var body: some View {
-        NavigationLink{
-            DebugView()
-        }label: {
-            Text("Debug Mode")
-            
-        }
-        .frame(width: 200, height: 40)
-        .border(.white, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
-        .foregroundColor(.white)
-        
-    }
-}
+
 
 

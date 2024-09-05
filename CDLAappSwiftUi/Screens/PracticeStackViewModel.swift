@@ -45,7 +45,7 @@ final class PracticeStackViewModel: ObservableObject {
     }
     
    
-    func loadData() {
+    func loadData(lang: LanguageManager.Language) {
         firebaseService.getQuestions { model in
             self.questions = model.sorted(by: { Int($0.questionNumber) ?? 0 < Int($1.questionNumber) ?? 0 })
             self.currentQuestion = self.questions[0]
@@ -61,3 +61,4 @@ final class PracticeStackViewModel: ObservableObject {
             }
     }
 }
+//2.  viewModel.loadData(lang: languageManager.current) доделать со помощью Switch Case

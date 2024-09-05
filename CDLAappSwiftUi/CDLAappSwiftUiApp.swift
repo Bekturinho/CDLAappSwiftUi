@@ -9,33 +9,47 @@ import SwiftUI
 import FirebaseCore
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()
-    
-    return true
-  }
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        FirebaseApp.configure()
+        
+        return true
+    }
 }
 
 @main
 struct CDLAappSwiftUiApp: App {
-  // register app delegate for Firebase setup
-  @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-
-  var body: some Scene {
-    WindowGroup {
-      NavigationView {
-        ContentView()
-      }
+    // register app delegate for Firebase setup
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @ObservedObject var router = Router()
+    @ObservedObject var languageManager = LanguageManager()
+    
+    var body: some Scene {
+        WindowGroup {
+            NavigationStack(path: $router.navPath) {
+                ContentView()
+                    .navigationDestination(for: Router.Destination.self) { destination in
+                        switch destination {
+                        case .practice:
+                            PracticeStack(
+                                viewModel: .init()
+                            )
+                        case .exam:
+                            ExamView()
+                        case .debug:
+                            DebugView()
+                        }
+                    }
+                    .environmentObject(router)
+                    .environmentObject(languageManager)
+            }
+        }
     }
-  }
 }
-
-/**
- 1.Возвращение на главный экран Practice Mode
- 2.Добавить правильные ответы + Поработую над данными в FireBase
- 3.Показывать правильный ответ при нажатии Submit
- 4.Result Screen
- 5,Localisation
- 6.
+/** ToDo:
+ 1.Property Wrapper
+ 2.  viewModel.loadData(lang: languageManager.current) доделать со помощью Switch Case
+ 3.Change Lang alert // done
+ v
  */
+    

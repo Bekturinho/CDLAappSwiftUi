@@ -10,7 +10,7 @@ import SwiftUI
 struct PracticeStack: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: PracticeStackViewModel
-    
+    @EnvironmentObject var languageManager: LanguageManager
     var body: some View {
         PracticeView(
             model: $viewModel.currentQuestion, total: viewModel.questions.count,
@@ -37,12 +37,12 @@ struct PracticeStack: View {
             
         )
         .onAppear {
-            viewModel.loadData()
+            viewModel.loadData(lang: languageManager.current) // просто грузит
             viewModel.loadDataForSheet()
             
        
         }
     }
 }
-
+//2.  viewModel.loadData(lang: languageManager.current) доделать со помощью Switch Case
 
