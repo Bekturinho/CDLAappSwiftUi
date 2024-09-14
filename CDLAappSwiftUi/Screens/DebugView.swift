@@ -219,7 +219,7 @@ struct DebugView: View {
     @State private var answersArray: [String] = []
     @State private var languageType : String = ""
     
-    private let firebaseService = FirebaseService()
+    private let firebaseService = FirebaseService(languageManager: LanguageManager())
     
     var body: some View {
         VStack {

@@ -32,7 +32,7 @@ struct CDLAappSwiftUiApp: App {
                         switch destination {
                         case .practice:
                             PracticeStack(
-                                viewModel: .init()
+                                viewModel: .init(languageManager: languageManager)
                             )
                         case .exam:
                             ExamView()

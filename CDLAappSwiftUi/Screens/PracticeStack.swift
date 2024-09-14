@@ -11,6 +11,7 @@ struct PracticeStack: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: PracticeStackViewModel
     @EnvironmentObject var languageManager: LanguageManager
+   
     var body: some View {
         PracticeView(
             model: $viewModel.currentQuestion, total: viewModel.questions.count,
@@ -37,7 +38,9 @@ struct PracticeStack: View {
             
         )
         .onAppear {
-            viewModel.loadData(lang: languageManager.current) // просто грузит
+            // просто грузит
+            viewModel.loadData()
+            
             viewModel.loadDataForSheet()
             
        

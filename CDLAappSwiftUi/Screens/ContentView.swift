@@ -10,28 +10,28 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-            VStack{
-                HStack{
-                    GeneralKnowlegeButton()
-                    Spacer()
-                    ConfigurationButton()
-                    
-                }
+        VStack{
+            HStack{
+                GeneralKnowlegeButton()
                 Spacer()
-                
-                ButtonsView()
-                
-             
-                Spacer()
-                Spacer()
-                ResultView()
+                ConfigurationButton()
                 
             }
+            Spacer()
             
-            .background{
-                Color.black
-                    .ignoresSafeArea()
-            }
+            ButtonsView()
+            
+            
+            Spacer()
+            Spacer()
+            ResultView()
+            
+        }
+        
+        .background{
+            Color.black
+                .ignoresSafeArea()
+        }
     }
 }
 
@@ -47,9 +47,9 @@ struct ButtonsView: View {
         
         VStack{
             PracticeModeButton()
-           
+            
             ExamModeButton()
-            .padding()
+                .padding()
         }
         
         
@@ -139,19 +139,21 @@ struct GeneralKnowlegeButton: View {
 struct ConfigurationButton: View {
     @State private var showActionSheet = false
     @State private var showLanguagePicker = false
-    @State var fireBaseService = FirebaseService()
+    
     @EnvironmentObject var router: Router
     @State private var selectedLanguage: LanguageManager.Language = .eng
     @EnvironmentObject var languageManager: LanguageManager
     
+    
     var languageButtons: [Alert.Button] {
         LanguageManager.Language.allCases.map { lang in
-            .default(Text(lang.title)) {
-                languageManager.changeLanguage(lang: lang)
-            }
+                .default(Text(lang.title)) {
+                    languageManager.changeLanguage(lang: lang)
+                }
         } + [.cancel()]
     }
     var body: some View {
+        
         VStack {
             Button("o o o"){
                 showActionSheet = true
@@ -170,38 +172,39 @@ struct ConfigurationButton: View {
                         },
                         .default(Text("Go to Debug")) {router.navigate(to: .debug)},
                         
-                        .cancel()
+                            .cancel()
                     ]
                 )
             }
             
             .sheet(isPresented: $showLanguagePicker) {
-                           VStack {
-                               Text("Выберите язык")
-                                   .font(.headline)
-                               Picker("Language", selection: $selectedLanguage) {
-                                   ForEach(LanguageManager.Language.allCases, id: \.self) { lang in
-                                       Text(lang.title).tag(lang)
-                                   }
-                               }
-                               .pickerStyle(WheelPickerStyle())
-                               
-                               Button("Save") {
-                                   languageManager.changeLanguage(lang: selectedLanguage)
-                                   
-                                   showLanguagePicker = false
-                               }
-                           }
-                           .foregroundColor(.black)
-                           .padding()
-                       }
-                   }
+                VStack {
+                    Text("Выберите язык")
+                        .font(.headline)
+                    Picker("Language", selection: $selectedLanguage) {
+                        ForEach(LanguageManager.Language.allCases, id: \.self) { lang in
+                            Text(lang.title).tag(lang)
+                            
+                        }
+                        
+                    }
+                    .pickerStyle(WheelPickerStyle())
+                    
+                    Button("Save") {
+                        languageManager.current = selectedLanguage
+                        showLanguagePicker = false
+                    }
+                }
+                .foregroundColor(.black)
+                .padding()
+            }
+        }
         .foregroundColor(.white)
         .padding()
-        }
-  
     }
     
+}
+
 
 
 struct PracticeModeButton: View {

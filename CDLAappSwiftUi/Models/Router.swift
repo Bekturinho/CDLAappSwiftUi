@@ -40,6 +40,17 @@ final class LanguageManager: ObservableObject {
         var title: String {
             switch self {
             case .ru:
+                "RU"
+            case .kg:
+                "KG"
+            case .eng:
+                "ENG"
+            }
+        }
+        
+        var id: String {
+            switch self {
+            case .ru:
                 "questionsRU"
             case .kg:
                 "questionsKG"
@@ -49,9 +60,10 @@ final class LanguageManager: ObservableObject {
         }
     }
     
-    @Published var current = Language.kg
+    @Published var current = Language.eng
     
     func changeLanguage(lang: Language) {
         current = lang
+        print(current)
     }
 }

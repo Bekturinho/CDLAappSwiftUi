@@ -13,13 +13,15 @@ import SwiftUI
 // 4.Все должно работать//done
 
 struct PracticeView: View {
-   
+    
     @Binding var model: PracticeModel
     @State var goToSheetIsPresented: Bool = false
     @State var sheetQuestionsNumber: String = ""
+    @State var isHighlightAnswer: Bool = false
     let total: Int
     let goForwardCallback: () -> Void
     let goToCallback: (String) -> Void
+    
     
     init(model: Binding<PracticeModel>, total: Int, goForwardCallback: @escaping () -> Void, goToCallback: @escaping (String) -> Void) {
         self._model = model
@@ -31,9 +33,9 @@ struct PracticeView: View {
     @available(iOS 16.4, *)
     var body: some View {
         VStack(alignment: .leading) {
-         
+            
             TabBarView(isPresented: $goToSheetIsPresented)
-
+            
             Spacer()
             QuestionView(questionNumber: Int(model.questionNumber) ?? 0, total: total)
                 .padding()
@@ -42,34 +44,46 @@ struct PracticeView: View {
                 .foregroundColor(.white)
                 .padding()
             
-            ForEach(model.answers,id: \.self) { answer in
+            ForEach(model.answers, id: \.self) { answer in
                 Button {
                     model.selectedAnswer = answer
                 } label: {
                     QuestionCell(title: answer, isSelected: model.selectedAnswer == answer)
+                        .padding(2)
+                        .background(
+                            model.selectedAnswer == answer && isHighlightAnswer
+                            ? (answer == model.correctAnswer ? Color.green : Color.red)
+                            : Color.clear
+                        )
                         .padding()
+                        .cornerRadius(8)
                 }
+                
             }
             .foregroundColor(.white)
             
-                Button {
+            Button {
+                if isHighlightAnswer {
                     goForwardCallback()
-                } label: {
-                    HStack{
-                        Spacer()
-                       
-                        Text("SUBMIT")
-                        
-                        Spacer()
-                    }
-                    .frame(height: 55)
-                    .background{
-                        Color.gray
-                    }
-                    .cornerRadius(8)
-                    .padding()
+                } else {
+                    isHighlightAnswer = true
                 }
-                .disabled(model.selectedAnswer == nil)
+            } label: {
+                HStack{
+                    Spacer()
+                    
+                    Text("SUBMIT")
+                    
+                    Spacer()
+                }
+                .frame(height: 55)
+                .background{
+                    Color.gray
+                }
+                .cornerRadius(8)
+                .padding()
+            }
+            .disabled(model.selectedAnswer == nil)
             
             Spacer()
         }
@@ -79,28 +93,28 @@ struct PracticeView: View {
                 .ignoresSafeArea()
         }
         .sheet(isPresented: $goToSheetIsPresented) {
-                VStack {
-                    Text("Go To Question")
-                        .foregroundStyle(.white)
-                        .padding()
+            VStack {
+                Text("Go To Question")
+                    .foregroundStyle(.white)
+                    .padding()
+                
+                TextField("Question number", text: $sheetQuestionsNumber)
+                    .textFieldStyle(.roundedBorder)
+                    .padding(.horizontal)
+                    .foregroundStyle(Color(uiColor: .darkGray))
+                    .keyboardType(.asciiCapableNumberPad)
+                
+                Button {
+                    goToCallback(sheetQuestionsNumber)
                     
-                    TextField("Question number", text: $sheetQuestionsNumber)
-                        .textFieldStyle(.roundedBorder)
-                        .padding(.horizontal)
-                        .foregroundStyle(Color(uiColor: .darkGray))
-                        .keyboardType(.asciiCapableNumberPad)
-                    
-                    Button {
-                        goToCallback(sheetQuestionsNumber)
-                        
-                    } label: {
-                        Text("OK")
-                    }
-                    Spacer()
+                } label: {
+                    Text("OK")
                 }
-                .presentationDetents([.height(170)])
-                .presentationBackground(Color(uiColor: .darkGray))
-          
+                Spacer()
+            }
+            .presentationDetents([.height(170)])
+            .presentationBackground(Color(uiColor: .darkGray))
+            
         }
     }
 }
@@ -155,7 +169,7 @@ struct TabBarView: View {
         }
         .foregroundColor(.white)
     }
-       
+    
 }
 
 struct QuestionView: View {
@@ -190,9 +204,9 @@ struct QuestionCell: View {
             
         }
         
-       
+        
     }
- 
+    
 }
 
 

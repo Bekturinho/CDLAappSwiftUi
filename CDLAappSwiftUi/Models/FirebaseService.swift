@@ -10,11 +10,15 @@ import FirebaseCore
 import FirebaseFirestore
 
 class FirebaseService {
-    @EnvironmentObject var languageManager: LanguageManager
+    var languageManager: LanguageManager
+//    @State var currentLanguage = LanguageManager()
+
+    
     let db: Firestore
     
-    init() {
+    init(languageManager: LanguageManager) {
         self.db = Firestore.firestore()
+        self.languageManager = languageManager
     }
     
     func addQuestion(model: PracticeModel, language: String) {
@@ -26,53 +30,80 @@ class FirebaseService {
         
     }
     
+    func changeLanguage(lang: LanguageManager.Language){
+        languageManager.current = lang
+    }
+    
     
 //    questions/languages/ru/вопросы
     func getQuestions(callback: @escaping ([PracticeModel]) -> Void) {
-        switch languageManager.current{
-        case.eng:
-            db.collection("questions").getDocuments { (querySnapshot, error) in
-                if let error = error {
-                    print("Error getting documents: \(error)")
-                }
-                
-                let model = querySnapshot?.documents.compactMap {
-                    return try? $0.data(as: PracticeModel.self)
-                }
+        db.collection(languageManager.current.id).getDocuments { (querySnapshot, error) in
+                       if let error = error {
+                           print("Error getting documents: \(error)")
+                       }
+       
+                       let model = querySnapshot?.documents.compactMap {
+                           return try? $0.data(as: PracticeModel.self)
+                       }
+       
+                       if let model {
+                           callback(model)
+                       }
+            
+                   }
 
-                if let model {
-                    callback(model)
-                }
-            }
-        case .ru:
-            db.collection("questionsRU").getDocuments { (querySnapshot, error) in
-                if let error = error {
-                    print("Error getting documents: \(error)")
-                }
-                
-                let model = querySnapshot?.documents.compactMap {
-                    return try? $0.data(as: PracticeModel.self)
-                }
-
-                if let model {
-                    callback(model)
-                }
-            }
-        case .kg:
-            db.collection("questionsKG").getDocuments { (querySnapshot, error) in
-                if let error = error {
-                    print("Error getting documents: \(error)")
-                }
-                
-                let model = querySnapshot?.documents.compactMap {
-                    return try? $0.data(as: PracticeModel.self)
-                }
-
-                if let model {
-                    callback(model)
-                }
-            }
-        }
+        
+        
+//        switch currentLanguage {
+//        case.eng:
+//            db.collection("questions").getDocuments { (querySnapshot, error) in
+//                if let error = error {
+//                    print("Error getting documents: \(error)")
+//                }
+//                
+//                let model = querySnapshot?.documents.compactMap {
+//                    return try? $0.data(as: PracticeModel.self)
+//                }
+//
+//                if let model {
+//                    callback(model)
+//                }
+//            }
+//        case .ru:
+//            db.collection("questionsRU").getDocuments { (querySnapshot, error) in
+//                if let error = error {
+//                    print("Error getting documents: \(error)")
+//                }
+//                
+//                let model = querySnapshot?.documents.compactMap {
+//                    return try? $0.data(as: PracticeModel.self)
+//                }
+//
+//                if let model {
+//                    callback(model)
+//                }
+//            }
+//        case .kg:
+//            db.collection("questionsKG").getDocuments { (querySnapshot, error) in
+//                if let error = error {
+//                    print("Error getting documents: \(error)")
+//                }
+//                
+//                let model = querySnapshot?.documents.compactMap {
+//                    return try? $0.data(as: PracticeModel.self)
+//                }
+//
+//                if let model {
+//                    callback(model)
+//                }
+//                
+//            }
+//        
+//        }
+    
+        
+    
+        
         
     }
 }

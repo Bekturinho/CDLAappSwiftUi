@@ -18,6 +18,6 @@ struct PracticeModel: Equatable, Codable {
 
 struct DataType{
     let kg = "questionsKG"
-    let ru = "questionsKG"
+    let ru = "questionsRU"
     let eng = "questions"
 }

@@ -10,11 +10,16 @@ import Foundation
 final class PracticeStackViewModel: ObservableObject {
     var questions: [PracticeModel] = []
     // TODO: - Loader
+
     @Published var currentQuestion: PracticeModel
-    var indexOFSHeet: Int
-    private let firebaseService = FirebaseService()
     
-    init() {
+    var indexOFSHeet: Int
+  
+    private let firebaseService: FirebaseService
+    
+    
+    init(languageManager: LanguageManager) {
+        firebaseService = .init(languageManager: languageManager)
         currentQuestion = .init(questionNumber: "", question: "", answers: [], correctAnswer: "");
         indexOFSHeet = .init(0)
     }
@@ -40,19 +45,20 @@ final class PracticeStackViewModel: ObservableObject {
         
         if let index = questions.firstIndex(where: { $0.questionNumber == currentQuestion.questionNumber }), index < questions.endIndex {
             currentQuestion = questions[indexOFSHeet]
-            print(currentQuestion)
         }
     }
     
-   
-    func loadData(lang: LanguageManager.Language) {
-        firebaseService.getQuestions { model in
+    
+    func loadData() {
+//        firebaseService.currentLanguage.changeLanguage(lang: lang)
+        firebaseService.getQuestions() { model in
             self.questions = model.sorted(by: { Int($0.questionNumber) ?? 0 < Int($1.questionNumber) ?? 0 })
             self.currentQuestion = self.questions[0]
             
         }
-   
+        
     }
+  
     
     func loadDataForSheet() {
             firebaseService.getQuestions { model in
