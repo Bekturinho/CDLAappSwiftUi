@@ -15,6 +15,11 @@ struct PracticeModel: Equatable, Codable {
     let correctAnswer: String
 }
 
+struct UserModel: Equatable, Codable {
+    let nickname: String
+    let password: String
+}
+
 
 struct DataType{
     let kg = "questionsKG"

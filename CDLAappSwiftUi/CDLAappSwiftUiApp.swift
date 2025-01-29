@@ -34,11 +34,23 @@ struct CDLAappSwiftUiApp: App {
                             PracticeStack(
                                 viewModel: .init(languageManager: languageManager)
                             )
+                            .environmentObject(router)
                         case .exam:
                             ExamView()
+                                .environmentObject(router)
                         case .debug:
                             DebugView()
+                        case .contentView:
+                            ContentView()
+                                .environmentObject(router)
+                                .environmentObject(languageManager)
+                        case .startexam:
+                            ExamStack(
+                                viewModel: .init(languageManager: languageManager)
+                            )
+                            .environmentObject(router)
                         }
+                    
                     }
                     .environmentObject(router)
                     .environmentObject(languageManager)
@@ -46,10 +58,9 @@ struct CDLAappSwiftUiApp: App {
         }
     }
 }
-/** ToDo:
- 1.Property Wrapper
- 2.  viewModel.loadData(lang: languageManager.current) доделать со помощью Switch Case
- 3.Change Lang alert // done
- v
+/**
+ To Do:
+ 1. Настроить Router так чтобы при нажатии на ProacticeModeButton не крашило
+ 2.Доделать логику авторизации
  */
     

@@ -15,6 +15,7 @@ struct ContentView: View {
                 GeneralKnowlegeButton()
                 Spacer()
                 ConfigurationButton()
+                .navigationBarBackButtonHidden(true)
                 
             }
             Spacer()
@@ -123,12 +124,25 @@ struct PracticeModeCorrectLabel: View {
 
 
 struct GeneralKnowlegeButton: View {
+    
+    @State private var showActionSheet = false
     var body: some View {
-        Button{
-            print("Work")
-        }label: {
-            Text("General Knowlegde")
-            Image(systemName: "chevron.down")
+        
+        Button("General Knowlegde"){
+         showActionSheet = true
+        }
+        .actionSheet(isPresented: $showActionSheet) {
+            ActionSheet(
+                title: Text("Действия"),
+                message: Text("Выберите действие"),
+                buttons: [
+                    
+                    .default(Text("Choose Language")) {},
+                    .default(Text("Go to Debug")) {},
+                    
+                        .cancel()
+                ]
+            )
         }
         
         .foregroundColor(.white)

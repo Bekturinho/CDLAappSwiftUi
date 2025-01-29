@@ -24,6 +24,7 @@
 		E06682AB2C28A36200FD6DD3 /* PracticeStackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06682AA2C28A36200FD6DD3 /* PracticeStackViewModel.swift */; };
 		E06682E72C309A3F00FD6DD3 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06682E62C309A3F00FD6DD3 /* DebugView.swift */; };
 		E06682E92C36781400FD6DD3 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06682E82C36781400FD6DD3 /* FirebaseService.swift */; };
+		E08486C02CDF28C000725661 /* StartExamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08486BF2CDF28C000725661 /* StartExamView.swift */; };
 		E0D442972C0C2C50007D6AAF /* CDLAappSwiftUiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D442962C0C2C50007D6AAF /* CDLAappSwiftUiApp.swift */; };
 		E0D442992C0C2C50007D6AAF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D442982C0C2C50007D6AAF /* ContentView.swift */; };
 		E0D4429B2C0C2C5E007D6AAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0D4429A2C0C2C5E007D6AAF /* Assets.xcassets */; };
@@ -35,6 +36,8 @@
 		E0D443072C102EDA007D6AAF /* PracticeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D443062C102EDA007D6AAF /* PracticeModel.swift */; };
 		E0D443092C114AA6007D6AAF /* ExamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D443082C114AA6007D6AAF /* ExamView.swift */; };
 		E0E23AD52C7E635200A74747 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E23AD42C7E635200A74747 /* Router.swift */; };
+		E0EEF0F92D3F4A1A00FAFE24 /* ExamStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEF0F82D3F4A1A00FAFE24 /* ExamStack.swift */; };
+		E0EEF0FB2D3F4AB200FAFE24 /* ExamStackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEF0FA2D3F4AB200FAFE24 /* ExamStackViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,7 @@
 		E06682AA2C28A36200FD6DD3 /* PracticeStackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeStackViewModel.swift; sourceTree = "<group>"; };
 		E06682E62C309A3F00FD6DD3 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
 		E06682E82C36781400FD6DD3 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		E08486BF2CDF28C000725661 /* StartExamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartExamView.swift; sourceTree = "<group>"; };
 		E0D442932C0C2C50007D6AAF /* CDLAappSwiftUi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CDLAappSwiftUi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0D442962C0C2C50007D6AAF /* CDLAappSwiftUiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDLAappSwiftUiApp.swift; sourceTree = "<group>"; };
 		E0D442982C0C2C50007D6AAF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 		E0D443062C102EDA007D6AAF /* PracticeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeModel.swift; sourceTree = "<group>"; };
 		E0D443082C114AA6007D6AAF /* ExamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamView.swift; sourceTree = "<group>"; };
 		E0E23AD42C7E635200A74747 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		E0EEF0F82D3F4A1A00FAFE24 /* ExamStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamStack.swift; sourceTree = "<group>"; };
+		E0EEF0FA2D3F4AB200FAFE24 /* ExamStackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamStackViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,9 +183,8 @@
 				E0D442982C0C2C50007D6AAF /* ContentView.swift */,
 				E0D443032C102E80007D6AAF /* PracticeView.swift */,
 				E0D443082C114AA6007D6AAF /* ExamView.swift */,
-				E06682A82C28A17600FD6DD3 /* PracticeStack.swift */,
-				E06682AA2C28A36200FD6DD3 /* PracticeStackViewModel.swift */,
 				E06682E62C309A3F00FD6DD3 /* DebugView.swift */,
+				E08486BF2CDF28C000725661 /* StartExamView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -187,12 +192,40 @@
 		E0D443052C102EBC007D6AAF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E0EEF0F32D3F497700FAFE24 /* Router */,
+				E0EEF0F22D3F496200FAFE24 /* Services */,
+				E0EEF0F12D3F494800FAFE24 /* Stacks */,
 				E0D443062C102EDA007D6AAF /* PracticeModel.swift */,
-				E06682E82C36781400FD6DD3 /* FirebaseService.swift */,
 				E03F581D2C63ED1B00252513 /* UserDefaultsFacade.swift */,
-				E0E23AD42C7E635200A74747 /* Router.swift */,
+				E06682AA2C28A36200FD6DD3 /* PracticeStackViewModel.swift */,
+				E0EEF0FA2D3F4AB200FAFE24 /* ExamStackViewModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		E0EEF0F12D3F494800FAFE24 /* Stacks */ = {
+			isa = PBXGroup;
+			children = (
+				E06682A82C28A17600FD6DD3 /* PracticeStack.swift */,
+				E0EEF0F82D3F4A1A00FAFE24 /* ExamStack.swift */,
+			);
+			path = Stacks;
+			sourceTree = "<group>";
+		};
+		E0EEF0F22D3F496200FAFE24 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E06682E82C36781400FD6DD3 /* FirebaseService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E0EEF0F32D3F497700FAFE24 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				E0E23AD42C7E635200A74747 /* Router.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,12 +379,15 @@
 				E0D442992C0C2C50007D6AAF /* ContentView.swift in Sources */,
 				E06682A92C28A17600FD6DD3 /* PracticeStack.swift in Sources */,
 				E06682AB2C28A36200FD6DD3 /* PracticeStackViewModel.swift in Sources */,
+				E0EEF0FB2D3F4AB200FAFE24 /* ExamStackViewModel.swift in Sources */,
 				E0D443042C102E80007D6AAF /* PracticeView.swift in Sources */,
 				E03F581E2C63ED1B00252513 /* UserDefaultsFacade.swift in Sources */,
 				E06682E72C309A3F00FD6DD3 /* DebugView.swift in Sources */,
 				E0D443072C102EDA007D6AAF /* PracticeModel.swift in Sources */,
 				E06682E92C36781400FD6DD3 /* FirebaseService.swift in Sources */,
+				E0EEF0F92D3F4A1A00FAFE24 /* ExamStack.swift in Sources */,
 				E0D443092C114AA6007D6AAF /* ExamView.swift in Sources */,
+				E08486C02CDF28C000725661 /* StartExamView.swift in Sources */,
 				E0D442972C0C2C50007D6AAF /* CDLAappSwiftUiApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

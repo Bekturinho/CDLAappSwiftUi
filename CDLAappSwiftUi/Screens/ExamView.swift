@@ -49,7 +49,7 @@ struct TabBarForExamView: View {
                 Button{
                     
                 } label: {
-                    Text("Score Goto")
+                    Text("Reset Score")
                 }
                 
             }
@@ -93,24 +93,26 @@ struct AvgScoreView: View {
 }
 
 struct SliderView: View {
-    @State private var speed = 50.0
+    @EnvironmentObject var router: Router
+    @State private var speed = 20.0
     @State private var isEditing = false
     var body: some View {
         VStack {
             Slider(
                 value: $speed,
-                in: 0...100,
+                in: 0...40,
                 onEditingChanged: { editing in
                     isEditing = editing
                 }
             )
            
-            Text("60 minutes to complete 50 questions")
+            Text("\(String(Int(speed))) minutes to complete 50 questions")
                 .padding()
             
             
             Button{
-                
+                router.navigate(to: .startexam)
+              
             }label: {
                 HStack {
                     Spacer()

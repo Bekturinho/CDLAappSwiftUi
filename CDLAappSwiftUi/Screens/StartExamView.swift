@@ -12,7 +12,7 @@ import SwiftUI
 // 3. Добавить валидацию (Обработка ошибок если номер выйдет из массива)//done
 // 4.Все должно работать//done
 
-struct PracticeView: View {
+struct StartExamView: View {
     
     @Binding var model: PracticeModel
     @State var goToSheetIsPresented: Bool = false
@@ -120,13 +120,50 @@ struct PracticeView: View {
 }
 
 #Preview{
-    PracticeView(
+    StartExamView(
         model: .constant(.init(questionNumber: "1", question: "Who is nigga?", answers: ["1.dscscs", "2.sdcscsc", "3.scscscdsc"], correctAnswer: "vdfvdfv")), total: 1,
         goForwardCallback: {}, goToCallback: {_ in }
     )
 }
 
-extension PracticeView {
+struct QuestionView: View {
+    var questionNumber: Int
+    var total: Int
+    
+    var progressPersent: Int {
+        guard total >= 1 else {
+            return 0
+        }
+        
+        return Int(Double(questionNumber)/Double(total) * 100.0)
+    }
+    
+    var body: some View {
+        HStack{
+            Text("Question \(questionNumber) of \(total)")
+            Spacer()
+            Text("\(progressPersent)%")
+        }
+        .foregroundColor(.white)
+    }
+}
+
+struct QuestionsCell: View {
+    let title: String
+    var isSelected: Bool
+    var body: some View {
+        HStack {
+            Image(systemName: isSelected ? "circle.fill" : "circle")
+            Text(title)
+            
+        }
+        
+        
+    }
+    
+}
+
+extension StartExamView {
     struct TabBarView: View {
         @Environment(\.presentationMode) var presentationMode
         
@@ -157,7 +194,7 @@ extension PracticeView {
                     Button {
                         isPresented = true
                     } label: {
-                        Text("Goto")
+                        Text("Skip")
                     }
                     .padding()
                 }
