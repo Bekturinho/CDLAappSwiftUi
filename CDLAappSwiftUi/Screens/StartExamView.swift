@@ -34,7 +34,10 @@ struct StartExamView: View {
     var body: some View {
         VStack(alignment: .leading) {
             
-            TabBarView(isPresented: $goToSheetIsPresented)
+            TabBarView(isPresented: $goToSheetIsPresented, goToSkip: {
+                goForwardCallback()
+            }
+            )
             
             Spacer()
             QuestionView(questionNumber: Int(model.questionNumber) ?? 0, total: total)
@@ -50,11 +53,6 @@ struct StartExamView: View {
                 } label: {
                     QuestionCell(title: answer, isSelected: model.selectedAnswer == answer)
                         .padding(2)
-                        .background(
-                            model.selectedAnswer == answer && isHighlightAnswer
-                            ? (answer == model.correctAnswer ? Color.green : Color.red)
-                            : Color.clear
-                        )
                         .padding()
                         .cornerRadius(8)
                 }
@@ -63,11 +61,7 @@ struct StartExamView: View {
             .foregroundColor(.white)
             
             Button {
-                if isHighlightAnswer {
                     goForwardCallback()
-                } else {
-                    isHighlightAnswer = true
-                }
             } label: {
                 HStack{
                     Spacer()
@@ -166,14 +160,15 @@ struct QuestionsCell: View {
 extension StartExamView {
     struct TabBarView: View {
         @Environment(\.presentationMode) var presentationMode
-        
         @Binding var isPresented: Bool
-        
-        init(isPresented: Binding<Bool>) {
+        private let goToSkip: () -> Void
+        init(isPresented: Binding<Bool>, goToSkip: @escaping () -> Void) {
             self._isPresented = isPresented
+            self.goToSkip = goToSkip
         }
         
         var body: some View {
+           
             ZStack{
                 HStack{
                     Button{
@@ -192,7 +187,7 @@ extension StartExamView {
                     .padding()
                     
                     Button {
-                        isPresented = true
+                        goToSkip()
                     } label: {
                         Text("Skip")
                     }
