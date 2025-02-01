@@ -33,12 +33,12 @@ struct ExamView: View {
 }
 
 struct TabBarForExamView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var router: Router
     var body: some View {
         ZStack{
             HStack{
                 Button{
-                    presentationMode.wrappedValue.dismiss()
+                    router.navigate(to: .contentView)
                 } label: {
                     Image(systemName: "arrowshape.left")
                 }

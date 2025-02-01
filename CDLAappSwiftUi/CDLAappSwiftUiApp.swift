@@ -27,7 +27,7 @@ struct CDLAappSwiftUiApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: $router.navPath) {
-                ContentView()
+                FinalResultView()
                     .navigationDestination(for: Router.Destination.self) { destination in
                         switch destination {
                         case .practice:

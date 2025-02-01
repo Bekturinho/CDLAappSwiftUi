@@ -38,6 +38,7 @@
 		E0E23AD52C7E635200A74747 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E23AD42C7E635200A74747 /* Router.swift */; };
 		E0EEF0F92D3F4A1A00FAFE24 /* ExamStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEF0F82D3F4A1A00FAFE24 /* ExamStack.swift */; };
 		E0EEF0FB2D3F4AB200FAFE24 /* ExamStackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEF0FA2D3F4AB200FAFE24 /* ExamStackViewModel.swift */; };
+		E0EEF0FD2D4D963100FAFE24 /* FinalResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEF0FC2D4D963100FAFE24 /* FinalResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		E0E23AD42C7E635200A74747 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		E0EEF0F82D3F4A1A00FAFE24 /* ExamStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamStack.swift; sourceTree = "<group>"; };
 		E0EEF0FA2D3F4AB200FAFE24 /* ExamStackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamStackViewModel.swift; sourceTree = "<group>"; };
+		E0EEF0FC2D4D963100FAFE24 /* FinalResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalResultView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 				E0D443082C114AA6007D6AAF /* ExamView.swift */,
 				E06682E62C309A3F00FD6DD3 /* DebugView.swift */,
 				E08486BF2CDF28C000725661 /* StartExamView.swift */,
+				E0EEF0FC2D4D963100FAFE24 /* FinalResultView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0E23AD52C7E635200A74747 /* Router.swift in Sources */,
+				E0EEF0FD2D4D963100FAFE24 /* FinalResultView.swift in Sources */,
 				E0D442992C0C2C50007D6AAF /* ContentView.swift in Sources */,
 				E06682A92C28A17600FD6DD3 /* PracticeStack.swift in Sources */,
 				E06682AB2C28A36200FD6DD3 /* PracticeStackViewModel.swift in Sources */,
