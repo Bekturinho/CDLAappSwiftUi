@@ -121,26 +121,37 @@ struct StartExamView: View {
 }
 
 struct QuestionView: View {
+    @EnvironmentObject var router: Router
+    @State private var remainingTimeInSeconds = 30
+    @State private var timerRunning = true
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var questionNumber: Int
     var total: Int
-    
-    var progressPersent: Int {
-        guard total >= 1 else {
-            return 0
-        }
-        
-        return Int(Double(questionNumber)/Double(total) * 100.0)
-    }
-    
+
     var body: some View {
-        HStack{
+        HStack {
             Text("Question \(questionNumber) of \(total)")
             Spacer()
-            Text("\(progressPersent)%")
+            Text(timeString(from: remainingTimeInSeconds))
+                .onReceive(timer) { _ in
+                    if remainingTimeInSeconds > 0 && timerRunning {
+                        remainingTimeInSeconds -= 1
+                    } else if timerRunning {
+                        timerRunning = false
+                        router.navigate(to: .result)
+                    }
+                }
         }
         .foregroundColor(.white)
     }
+
+    func timeString(from totalSeconds: Int) -> String {
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
 }
+
 
 struct QuestionsCell: View {
     let title: String
@@ -179,15 +190,9 @@ extension StartExamView {
                     
                     Spacer()
                     
-                    Button {
-                        
-                    } label: {
-                        Text("Score")
-                    }
-                    .padding()
                     
                     Button {
-                        goToSkip()
+                        presentationMode.wrappedValue.dismiss()
                     } label: {
                         Text("Skip")
                     }
@@ -195,7 +200,7 @@ extension StartExamView {
                 }
                 HStack{
                     Spacer()
-                    Text("Practice")
+                    Text("Exam")
                     Spacer()
                 }
                 
@@ -206,26 +211,25 @@ extension StartExamView {
     }
     
     struct QuestionsView: View {
+        @EnvironmentObject var router: Router
         var questionNumber: Int
         var total: Int
-        
-        var progressPersent: Int {
-            guard total >= 1 else {
-                return 0
-            }
-            
-            return Int(Double(questionNumber)/Double(total) * 100.0)
-        }
-        
+
         var body: some View {
-            HStack{
+            HStack {
                 Text("Question \(questionNumber) of \(total)")
                 Spacer()
-                Text("\(progressPersent)%")
             }
             .foregroundColor(.white)
         }
+
+        func timeString(from totalSeconds: Int) -> String {
+            let minutes = totalSeconds / 60
+            let seconds = totalSeconds % 60
+            return String(format: "%02d:%02d", minutes, seconds)
+        }
     }
+
     
     struct QuestionCell: View {
         let title: String

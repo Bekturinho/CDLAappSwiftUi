@@ -15,6 +15,7 @@ final class Router: ObservableObject {
         case debug
         case contentView
         case startexam
+        case result
     }
     
     @Published var navPath = NavigationPath()

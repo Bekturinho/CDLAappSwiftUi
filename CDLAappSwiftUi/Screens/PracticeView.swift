@@ -37,7 +37,7 @@ struct PracticeView: View {
             TabBarView(isPresented: $goToSheetIsPresented)
             
             Spacer()
-            QuestionView(questionNumber: Int(model.questionNumber) ?? 0, total: total)
+            QuestionsView(questionNumber: Int(model.questionNumber) ?? 0, total: total)
                 .padding()
             
             Text(model.question)

@@ -100,7 +100,7 @@ struct SliderView: View {
         VStack {
             Slider(
                 value: $speed,
-                in: 0...40,
+                in: 0...60,
                 onEditingChanged: { editing in
                     isEditing = editing
                 }

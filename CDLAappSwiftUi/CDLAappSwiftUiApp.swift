@@ -27,7 +27,7 @@ struct CDLAappSwiftUiApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: $router.navPath) {
-                FinalResultView()
+                ContentView()
                     .navigationDestination(for: Router.Destination.self) { destination in
                         switch destination {
                         case .practice:
@@ -49,8 +49,12 @@ struct CDLAappSwiftUiApp: App {
                                 viewModel: .init(languageManager: languageManager)
                             )
                             .environmentObject(router)
+                            
+                        case .result:
+                            FinalResultView()
+                                .environmentObject(router)
                         }
-                    
+                                            
                     }
                     .environmentObject(router)
                     .environmentObject(languageManager)
