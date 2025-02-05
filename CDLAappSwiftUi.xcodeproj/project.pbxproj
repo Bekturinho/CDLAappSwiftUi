@@ -39,6 +39,7 @@
 		E0EEF0F92D3F4A1A00FAFE24 /* ExamStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEF0F82D3F4A1A00FAFE24 /* ExamStack.swift */; };
 		E0EEF0FB2D3F4AB200FAFE24 /* ExamStackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEF0FA2D3F4AB200FAFE24 /* ExamStackViewModel.swift */; };
 		E0EEF0FD2D4D963100FAFE24 /* FinalResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEF0FC2D4D963100FAFE24 /* FinalResultView.swift */; };
+		E0EEF0FF2D52AEDD00FAFE24 /* DataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEF0FE2D52AEDD00FAFE24 /* DataCenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		E0EEF0F82D3F4A1A00FAFE24 /* ExamStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamStack.swift; sourceTree = "<group>"; };
 		E0EEF0FA2D3F4AB200FAFE24 /* ExamStackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamStackViewModel.swift; sourceTree = "<group>"; };
 		E0EEF0FC2D4D963100FAFE24 /* FinalResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalResultView.swift; sourceTree = "<group>"; };
+		E0EEF0FE2D52AEDD00FAFE24 /* DataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				E06682E82C36781400FD6DD3 /* FirebaseService.swift */,
+				E0EEF0FE2D52AEDD00FAFE24 /* DataCenter.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				E06682A92C28A17600FD6DD3 /* PracticeStack.swift in Sources */,
 				E06682AB2C28A36200FD6DD3 /* PracticeStackViewModel.swift in Sources */,
 				E0EEF0FB2D3F4AB200FAFE24 /* ExamStackViewModel.swift in Sources */,
+				E0EEF0FF2D52AEDD00FAFE24 /* DataCenter.swift in Sources */,
 				E0D443042C102E80007D6AAF /* PracticeView.swift in Sources */,
 				E03F581E2C63ED1B00252513 /* UserDefaultsFacade.swift in Sources */,
 				E06682E72C309A3F00FD6DD3 /* DebugView.swift in Sources */,

@@ -40,7 +40,7 @@ struct StartExamView: View {
             )
             
             Spacer()
-            QuestionView(questionNumber: Int(model.questionNumber) ?? 0, total: total)
+            QuestionView(timerValue: DataCenter(), questionNumber: Int(model.questionNumber) ?? 0, total: total)
                 .padding()
             
             Text(model.question)
@@ -122,24 +122,26 @@ struct StartExamView: View {
 
 struct QuestionView: View {
     @EnvironmentObject var router: Router
-    @State private var remainingTimeInSeconds = 30
+    @State private var remainingTimeInSeconds = 300
     @State private var timerRunning = true
+    @ObservedObject var timerValue: DataCenter
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var questionNumber: Int
     var total: Int
-
     var body: some View {
         HStack {
             Text("Question \(questionNumber) of \(total)")
             Spacer()
-            Text(timeString(from: remainingTimeInSeconds))
+            Text(timeString(from: timerValue.intData))
                 .onReceive(timer) { _ in
-                    if remainingTimeInSeconds > 0 && timerRunning {
-                        remainingTimeInSeconds -= 1
+                    if  timerValue.intData > 0 && timerRunning {
+                        timerValue.intData -= 1
                     } else if timerRunning {
                         timerRunning = false
                         router.navigate(to: .result)
+                        
                     }
+                   
                 }
         }
         .foregroundColor(.white)
@@ -212,13 +214,26 @@ extension StartExamView {
     
     struct QuestionsView: View {
         @EnvironmentObject var router: Router
+        @State private var remainingTimeInSeconds = 300
+        @State private var timerRunning = true
+        let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
         var questionNumber: Int
         var total: Int
-
         var body: some View {
             HStack {
                 Text("Question \(questionNumber) of \(total)")
                 Spacer()
+                Text(timeString(from: remainingTimeInSeconds))
+                    .onReceive(timer) { _ in
+                        if remainingTimeInSeconds > 0 && timerRunning {
+                            remainingTimeInSeconds -= 1
+                        } else if timerRunning {
+                            timerRunning = false
+                            router.navigate(to: .result)
+                            
+                        }
+                       
+                    }
             }
             .foregroundColor(.white)
         }

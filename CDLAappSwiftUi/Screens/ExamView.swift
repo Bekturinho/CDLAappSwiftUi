@@ -94,8 +94,9 @@ struct AvgScoreView: View {
 
 struct SliderView: View {
     @EnvironmentObject var router: Router
-    @State private var speed = 20.0
+    @State  var speed = 20.0
     @State private var isEditing = false
+    @StateObject private var choosenNum = DataCenter()
     var body: some View {
         VStack {
             Slider(
@@ -103,12 +104,18 @@ struct SliderView: View {
                 in: 0...60,
                 onEditingChanged: { editing in
                     isEditing = editing
+                    choosenNum.intData = Int(speed)
+                    DataCenter().intData += Int(speed)
+                    print(speed)
                 }
+                
             )
-           
+            QuestionView(timerValue: choosenNum, questionNumber: 0, total: 0)
+                .environmentObject(choosenNum)
+
             Text("\(String(Int(speed))) minutes to complete 50 questions")
                 .padding()
-            
+          
             
             Button{
                 router.navigate(to: .startexam)
@@ -127,6 +134,7 @@ struct SliderView: View {
                 .padding()
             }
         }
+        
         .foregroundColor(.white)
         .padding()
         
